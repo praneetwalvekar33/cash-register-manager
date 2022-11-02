@@ -8,9 +8,11 @@ const btnConvertToChange=document.querySelector(".btn-check");
 btnConvertToChange.addEventListener("click",()=>{
     const billAmount=inputBillAmount.value;
     const cashPaid=inputCashPaid.value;
-    const notesArray=numberOfNotes(1000,2000);
+    const notesArray=numberOfNotes(billAmount, cashPaid);
     for(let i=0; i<8; i++){
-        console.log(""+i+": "+notesArray[i]);
+        const textNode = document.createTextNode(""+notesArray[i])
+        document.querySelector(".notes-"+(i+1)).appendChild(textNode);
+
     }
 });
 

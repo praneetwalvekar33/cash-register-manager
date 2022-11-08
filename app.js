@@ -2,17 +2,40 @@
 const inputBillAmount=document.querySelector(".input-bill");
 const inputCashPaid=document.querySelector(".input-paid");
 const btnConvertToChange=document.querySelector(".btn-check");
+const nextElement=document.querySelector(".message");
+const parentElement=document.querySelector(".error-message");
 
-
+console.log(nextElement);
+console.log(parentElement);
 
 btnConvertToChange.addEventListener("click",()=>{
     const billAmount=inputBillAmount.value;
     const cashPaid=inputCashPaid.value;
-    const notesArray=numberOfNotes(billAmount, cashPaid);
-    for(let i=0; i<8; i++){
-        const textNode = document.createTextNode(""+notesArray[i])
-        document.querySelector(".notes-"+(i+1)).appendChild(textNode);
+    const messageElement=document.createElement("div");
+    
+    if(cashPaid<billAmount){
+        const errorTextNode=document.createTextNode("Cash Paid should be greater than or equal to Bill Amount");
+        messageElement.appendChild(errorTextNode);
+        parentElement.insertBefore(messageElement,nextElement);
+    }else if(cashPaid<0 || billAmount<0){
+        const errorTextNode=document.createTextNode("Cash Paid or Bill Amount is negative value");
+        messageElement.appendChild(errorTextNode);
+        parentElement.insertBefore(messageElement,nextElement);
+    }else if(cashPaid==0 || billAmount==0){
+        const errorTextNode=document.createTextNode("Any one of Cash Paid or Bill Amount is empty");
+        messageElement.appendChild(errorTextNode);
+        parentElement.insertBefore(messageElement,nextElement);
+    }else{
+        const successTextNode=document.createTextNode("Operation Sucessful!");
+        messageElement.appendChild(successTextNode);
+        parentElement.insertBefore(messageElement,nextElement);
 
+        const notesArray=numberOfNotes(billAmount, cashPaid);
+    
+        for(let i=0; i<8; i++){
+            const textNode = document.createTextNode(""+notesArray[i])
+            document.querySelector(".notes-"+(i+1)).appendChild(textNode);
+        }
     }
 });
 
@@ -23,6 +46,7 @@ function numberOfNotes(billAmount, cashPaid){
     for(let i=0; i<8; i++){
         notesArray[i]=0;
     }
+
     while(amountToBeReturned>0){
         if(amountToBeReturned>=2000){
             notesArray[0]+=1;
@@ -49,11 +73,6 @@ function numberOfNotes(billAmount, cashPaid){
             notesArray[7]+=1;
             amountToBeReturned-=1;
         }
-    }
-
-    console.log("inside the fundtion");
-    for(let i=0; i<8; i++){
-        console.log(""+i+": "+notesArray[i]);
     }
 
     return notesArray;

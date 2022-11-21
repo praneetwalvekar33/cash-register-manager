@@ -9,10 +9,22 @@ console.log(nextElement);
 console.log(parentElement);
 
 btnConvertToChange.addEventListener("click",()=>{
-    const billAmount=inputBillAmount.value;
-    const cashPaid=inputCashPaid.value;
+    const billAmount=Number.parseInt(inputBillAmount.value);
+    const cashPaid=Number.parseInt(inputCashPaid.value);
     const messageElement=document.createElement("div");
+
+    console.log(billAmount);
+    console.log(cashPaid);
+
+    console.log(cashPaid<billAmount);
+    console.log(cashPaid-billAmount);
     
+    for(let i=0; i<8; i++){
+        const rowElement=document.querySelector(".notes-"+(i+1));
+        rowElement.innerHTML=""+0;
+    
+    }
+
     if(cashPaid<billAmount){
         const errorTextNode=document.createTextNode("Cash Paid should be greater than or equal to Bill Amount");
         messageElement.appendChild(errorTextNode);
@@ -30,11 +42,11 @@ btnConvertToChange.addEventListener("click",()=>{
         messageElement.appendChild(successTextNode);
         parentElement.insertBefore(messageElement,nextElement);
 
-        const notesArray=numberOfNotes(billAmount, cashPaid);
-    
+        let notesArray=numberOfNotes(billAmount, cashPaid); 
         for(let i=0; i<8; i++){
-            const textNode = document.createTextNode(""+notesArray[i])
-            document.querySelector(".notes-"+(i+1)).appendChild(textNode);
+            console.log(i+": "+ notesArray[i]);
+            const rowElement=document.querySelector(".notes-"+(i+1));
+            rowElement.innerHTML=""+notesArray[i];
         }
     }
 });
@@ -46,32 +58,40 @@ function numberOfNotes(billAmount, cashPaid){
     for(let i=0; i<8; i++){
         notesArray[i]=0;
     }
-
+    console.log("In the function: ");
     while(amountToBeReturned>0){
         if(amountToBeReturned>=2000){
             notesArray[0]+=1;
             amountToBeReturned-=2000;
+            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=500){
             notesArray[1]+=1;
             amountToBeReturned-=500;
+            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=100){
             notesArray[2]+=1;
             amountToBeReturned-=100;
+            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=50){
             notesArray[3]+=1;
             amountToBeReturned-=50;
+            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=20){
             notesArray[4]+=1;
             amountToBeReturned-=20;
+            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=10){
             notesArray[5]+=1;
             amountToBeReturned-=10;
+            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=5){
             notesArray[6]+=1;
             amountToBeReturned-=5;
+            console.log(amountToBeReturned);
         }else{
             notesArray[7]+=1;
             amountToBeReturned-=1;
+            console.log(amountToBeReturned);
         }
     }
 

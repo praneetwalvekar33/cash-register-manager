@@ -5,19 +5,10 @@ const btnConvertToChange=document.querySelector(".btn-check");
 const nextElement=document.querySelector(".message");
 const parentElement=document.querySelector(".error-message");
 
-console.log(nextElement);
-console.log(parentElement);
-
 btnConvertToChange.addEventListener("click",()=>{
     const billAmount=Number.parseInt(inputBillAmount.value);
     const cashPaid=Number.parseInt(inputCashPaid.value);
     const messageElement=document.createElement("div");
-
-    console.log(billAmount);
-    console.log(cashPaid);
-
-    console.log(cashPaid<billAmount);
-    console.log(cashPaid-billAmount);
     
     for(let i=0; i<8; i++){
         const rowElement=document.querySelector(".notes-"+(i+1));

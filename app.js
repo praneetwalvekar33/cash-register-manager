@@ -2,14 +2,13 @@
 const inputBillAmount=document.querySelector(".input-bill");
 const inputCashPaid=document.querySelector(".input-paid");
 const btnConvertToChange=document.querySelector(".btn-check");
-const nextElement=document.querySelector(".message");
-const parentElement=document.querySelector(".error-message");
+const message=document.querySelector(".message");
 
 btnConvertToChange.addEventListener("click",()=>{
     const billAmount=Number.parseInt(inputBillAmount.value);
     const cashPaid=Number.parseInt(inputCashPaid.value);
-    const messageElement=document.createElement("div");
     
+    message.style.display="none";
     for(let i=0; i<8; i++){
         const rowElement=document.querySelector(".notes-"+(i+1));
         rowElement.innerHTML=""+0;
@@ -17,21 +16,13 @@ btnConvertToChange.addEventListener("click",()=>{
     }
 
     if(cashPaid<billAmount){
-        const errorTextNode=document.createTextNode("Cash Paid should be greater than or equal to Bill Amount");
-        messageElement.appendChild(errorTextNode);
-        parentElement.insertBefore(messageElement,nextElement);
+        showMessage("Cash Paid should be greater than or equal to Bill Amount",false);
     }else if(cashPaid<0 || billAmount<0){
-        const errorTextNode=document.createTextNode("Cash Paid or Bill Amount is negative value");
-        messageElement.appendChild(errorTextNode);
-        parentElement.insertBefore(messageElement,nextElement);
+        showMessage("Cash Paid or Bill Amount is negative value",false)
     }else if(cashPaid==0 || billAmount==0){
-        const errorTextNode=document.createTextNode("Any one of Cash Paid or Bill Amount is empty");
-        messageElement.appendChild(errorTextNode);
-        parentElement.insertBefore(messageElement,nextElement);
+        showMessage("Any one of Cash Paid or Bill Amount is empty",false);
     }else{
-        const successTextNode=document.createTextNode("Operation Sucessful!");
-        messageElement.appendChild(successTextNode);
-        parentElement.insertBefore(messageElement,nextElement);
+        showMessage("Operation Sucessful!",true);
 
         let notesArray=numberOfNotes(billAmount, cashPaid); 
         for(let i=0; i<8; i++){
@@ -89,4 +80,17 @@ function numberOfNotes(billAmount, cashPaid){
     return notesArray;
 }
 
-console.log("able to connect to html");
+function showMessage(textMessage, messageType){
+    message.style.display="block";
+    message.style.textAlign="center"
+    message.style.paddingTop="0.5rem";
+    message.style.paddingBottom="0.5rem"
+    message.innerText=textMessage;
+    message.style.color="#f7fafc";
+    message.style.borderRadius="1rem";
+    if(messageType){
+        message.style.backgroundColor="#16a34a";
+    }else{
+        message.style.backgroundColor="#dc2626";
+    }
+}

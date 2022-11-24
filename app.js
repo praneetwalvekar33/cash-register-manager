@@ -40,40 +40,32 @@ function numberOfNotes(billAmount, cashPaid){
     for(let i=0; i<8; i++){
         notesArray[i]=0;
     }
-    console.log("In the function: ");
+    
     while(amountToBeReturned>0){
         if(amountToBeReturned>=2000){
             notesArray[0]+=1;
             amountToBeReturned-=2000;
-            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=500){
             notesArray[1]+=1;
             amountToBeReturned-=500;
-            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=100){
             notesArray[2]+=1;
             amountToBeReturned-=100;
-            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=50){
             notesArray[3]+=1;
             amountToBeReturned-=50;
-            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=20){
             notesArray[4]+=1;
             amountToBeReturned-=20;
-            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=10){
             notesArray[5]+=1;
             amountToBeReturned-=10;
-            console.log(amountToBeReturned);
         }else if(amountToBeReturned>=5){
             notesArray[6]+=1;
             amountToBeReturned-=5;
-            console.log(amountToBeReturned);
         }else{
             notesArray[7]+=1;
             amountToBeReturned-=1;
-            console.log(amountToBeReturned);
         }
     }
 

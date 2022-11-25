@@ -11,22 +11,30 @@ body{
     color: var(--primary-font-color);
 }
 
-.nav{
+nav{
     text-align: center;
-    padding: 2rem 2rem;
     background-color: var(--primary-color);
     color: var(--secondary-font-color);
+    padding: 2rem;
     font-size: x-large;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
 
-main{
-    max-width: 850px;
-    margin: auto;
+*{
+    box-sizing: border-box;
 }
 
+main{
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    max-width: 60vw;  
+}
+
+
 div{
+    text-align: center;
     align-items: center;
 }
 
@@ -38,10 +46,10 @@ label{
 
 input{
     width: 30%;
-    height:30px;
+    height:2rem;
     display: block;
     margin: auto;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     border: solid 1px var(--primary-color);
     border-radius: 0.5rem;
 }
@@ -61,12 +69,21 @@ table{
     border: solid 1px var(--primary-color);
     border-collapse: collapse;
     margin: auto;
+    width: 60vw;
     margin-top: 1rem;
+}
+
+table > caption{
+    margin-bottom: 0.5rem;
+}
+
+th{
+    border: solid 1px var(--primary-color);
 }
 
 td{
     border: solid 1px var(--primary-color);
-    padding-right: 3rem;
+    padding-right: 0.5rem;
     padding-top: 0.5rem;
 }
 
